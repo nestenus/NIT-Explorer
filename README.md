@@ -1,1 +1,2 @@
-NIT EXPLORER# NIT-Explorer
+# NIT-Explorer
+The Explorer project for NIT-Blockchain
