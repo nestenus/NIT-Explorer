@@ -1,0 +1,4 @@
+.maindiv {
+	min-height: -moz-available;
+	min-height: -webkit-fill-available;
+}

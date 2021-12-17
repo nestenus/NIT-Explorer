@@ -1,0 +1,198 @@
+
+<div class="container">
+		<app-search-bar></app-search-bar>
+		
+		<!-- Loading -->
+		<div class="spinDiv w-100" *ngIf="loading">
+			<div>
+				<mat-spinner class="mat-spinner-color"></mat-spinner>
+				<div class="text-white">Loading...</div>
+			</div>
+		</div>
+		
+		<!-- Loading -->
+		<div class="row" *ngIf="!loading">
+	
+			<div class="col-lg-6 mb-4 mb-lg-0">
+				<div class="card h-100">
+					<div class="card-header d-flex justify-content-between align-items-center">
+						<h6 class="card-header-title">Latest Blocks</h6>
+					</div>
+					
+					<div class="js-scrollbar">
+						<div class="" style="max-height: none;" tabindex="0">
+							<div class="" *ngIf="BlockList; else noBlockListDiv">
+								<div class="code-item" *ngFor="let block of BlockList;">
+									<div class="row">
+										<div class="col-md-5 col-sm-5">
+											<a class="d-sm-block small text-secondary ml-1 ml-sm-0 text-nowrap" href="/block/{{block.data.number}}"><b><span style="color: #007bff;"><i class="fa fa-cubes" aria-hidden="true"></i></span>&nbsp;{{block.data.number}}</b></a>
+											<span class="d-sm-block small text-secondary ml-1 ml-sm-0 text-nowrap">{{block.data.timestamp*1000 | date:'MMM d, y, h:mm a'}}</span>
+										</div>
+										<div class="col-md-4 col-sm-4">
+											<span class="d-sm-block small text-secondary ml-1 ml-sm-0 text-nowrap" data-toggle="tooltip" title="{{block.data.miner}}"><span style="color: #007bff;"><i class="fa fa-gavel" aria-hidden="true"></i></span> {{block.data.miner?block.data.miner.substring(0,20):''}}...</span>
+										</div>
+										<div class="col-md-3 col-sm-3 text-right-class">
+											<span class="d-sm-block small text-secondary ml-1 ml-sm-0 text-nowrap"><span style="color: #007bff;"><i class="fa fa-exchange" aria-hidden="true"></i></span>&nbsp;{{block.data.transactions.length}}</span>
+										</div>
+									</div>
+								</div>
+	
+								<div class="pagination-cnt d-flex justify-content-between">
+									<!-- Pagination for Block -->
+									<div>
+										<nav aria-label="...">
+											<ul class="pagination">
+												<li class="page-item" *ngIf="pageNumberForBlock+1>1">
+													<button class="page-link" tabindex="-1" title="Go to Previous" (click)="onClickEvent(pageNumberForBlock,-1,'block')"><span aria-hidden="True"><i class="fa fa-chevron-left small"></i></span> <span class="sr-only">Previous</span></button>
+												</li>
+												<li class="page-item">
+													<button class="page-link disabled">Page <strong class="font-weight-medium">{{pageNumberForBlock+1}}</strong> of <strong class="font-weight-medium">{{TotalBlockPages}}</strong></button>
+												</li>
+												<li class="page-item" *ngIf="TotalBlockPages>pageNumberForBlock+1">
+													<button class="page-link" title="Go to Next" (click)="onClickEvent(pageNumberForBlock,+1,'block')"><span aria-hidden="True"><i class="fa fa-chevron-right small"></i></span> <span class="sr-only">Next</span></button>
+												</li>
+											</ul>
+										</nav>
+									</div>
+									<div>
+										<!-- search box goes here-->
+										<nav aria-label="...">
+											<ul class="pagination">
+												<li class="page-item" >
+													<input type="number" class="form-control" placeholder="Go to page" [(ngModel)]="blockSearchPage">
+												</li>
+												<li class="page-item">
+													<button class="page-link" (click)="jumpEvent(blockSearchPage,'block')">Search</button>
+												</li>
+												<!-- <li class="page-item" *ngIf="TotalTransactionPages>pageNumberForTransaction+1">
+													<button class="page-link" title="Go to Next" (click)="onClickEvent(pageNumberForTransaction,+1,'transctn')" ><span aria-hidden="True"><i class="fa fa-chevron-right small"></i></span> <span class="sr-only">Next</span></button>
+												</li> -->
+											</ul>
+										</nav>
+									</div>
+								</div>
+								
+							</div>
+
+							<!-- <div style="display:flex;height:50px;width:100%;" *ngIf="BlockList; else noBlockListDiv">
+								<div id="table-for-number-and-hash" style="flex-grow:7;flex-shrink:7;">
+									<div class="row-for-number-and-hash table-header">
+										<div class="cell-for-number"></div>
+										<div class="cell-for-hash"></div>
+									</div>
+								</div>
+								<div id="table-for-transaction" style="flex-grow:3;flex-shrink:3;"></div>
+							</div> -->
+			
+							<ng-template #noBlockListDiv>  
+								No Block List
+							</ng-template> 
+						</div>
+					</div>
+				</div>
+			</div>
+		
+			<div class="col-lg-6">
+				<div class="card h-100">
+					<div class="card-header d-flex justify-content-between align-items-center">
+						<h6 class="card-header-title">Transactions</h6>
+					</div>
+					<div class="js-scrollbar">
+						<div class="" style="max-height: none;" tabindex="0">
+							<div *ngIf="TransactionList; else noTransactionListDiv;">
+								<!-- <div class="row content-box">
+									<div class="col-md-12">
+										<div class="row mb-4">
+											<div class="col-md-5">
+												Hash
+											</div>
+											<div class="col-md-4">
+												From & To
+											</div>
+											<div class="col-md-3 text-right">
+												Value
+											</div>
+										</div>
+				
+										<div class="row mb-3" *ngFor="let transctn of TransactionList;">
+											<div class="col-sm-5">
+												<a class="d-sm-block small text-secondary ml-1 ml-sm-0 text-nowrap" title="{{transctn.tx.hash}}" href="/tx/{{transctn.tx.hash}}"><b>{{transctn.tx.hash?transctn.tx.hash.substring(0,20):''}}...</b></a>
+												<span class="d-sm-block small text-secondary ml-1 ml-sm-0 text-nowrap">{{transctn.tx.timestamp*1000 | date:'MMM d, y, h:mm a'}}</span>
+											</div>
+											<div class="col-sm-4">
+												<a href="/address/{{transctn.tx.from}}" class="d-sm-block small text-secondary ml-1 ml-sm-0 text-nowrap" title="{{transctn.tx.from}}">{{transctn.tx.from?transctn.tx.from.substring(0,20):''}}...</a>
+												<a href="/address/{{transctn.tx.to}}" class="d-sm-block small text-secondary ml-1 ml-sm-0 text-nowrap" title="{{transctn.tx.to}}" *ngIf="transctn.tx.to != null">{{transctn.tx.to?transctn.tx.to.substring(0,20):''}}...</a>
+												<a class="d-sm-block small text-secondary ml-1 ml-sm-0 text-nowrap" title="{{transctn.tx.to}}" *ngIf="transctn.tx.to == null">Contract Creation</a>
+											</div>
+											<div class="col-sm-3 text-right">
+												<span class="d-sm-block small text-secondary ml-1 ml-sm-0 text-nowrap">{{ transctn.tx.value |  convertnit}}</span>
+											</div>
+											<hr class="hr-space">
+										</div>									
+									</div>
+								</div> -->
+
+								<div class="code-item" *ngFor="let transctn of TransactionList;">
+									<div class="row">
+										<div class="col-md-5 col-sm-5">
+											<a class="d-sm-block small text-secondary ml-1 ml-sm-0 text-nowrap" title="{{transctn.tx.hash}}" href="/tx/{{transctn.tx.hash}}"><b><span style="color: #007bff;">Hash: </span>{{transctn.tx.hash?transctn.tx.hash.substring(0,20):''}}...</b></a>
+											<span class="d-sm-block small text-secondary ml-1 ml-sm-0 text-nowrap">{{transctn.tx.timestamp*1000 | date:'MMM d, y, h:mm a'}}</span>
+										</div>
+										<div class="col-md-4 col-sm-4">
+											<a href="/address/{{transctn.tx.from}}" class="d-sm-block small text-secondary ml-1 ml-sm-0 text-nowrap" title="{{transctn.tx.from}}"><b><span style="color: #007bff;">From: </span></b>{{transctn.tx.from?transctn.tx.from.substring(0,20):''}}...</a>
+											<a href="/address/{{transctn.tx.to}}" class="d-sm-block small text-secondary ml-1 ml-sm-0 text-nowrap" title="{{transctn.tx.to}}" *ngIf="transctn.tx.to != null"><b><span style="color: #007bff;">To: </span></b>{{transctn.tx.to?transctn.tx.to.substring(0,20):''}}...</a>
+											<a class="d-sm-block small text-secondary ml-1 ml-sm-0 text-nowrap" title="{{transctn.tx.to}}" *ngIf="transctn.tx.to == null">Contract Creation</a>
+										</div>
+										<div class="col-md-3 col-sm-3 text-right-class">
+											<span class="d-sm-block small text-secondary ml-1 ml-sm-0 text-nowrap">{{ transctn.tx.value |  convertnit}} NIT</span>
+										</div>
+									</div>
+								</div>
+								
+								<div class="pagination-cnt d-flex justify-content-between">
+									<!-- Pagination for Block -->
+									<div>
+									<!-- Pagination for count -->
+										<nav aria-label="...">
+											<ul class="pagination">
+												<li class="page-item" *ngIf="pageNumberForTransaction+1>1">
+													<button class="page-link" tabindex="-1" title="Go to Previous" (click)="onClickEvent(pageNumberForTransaction,-1,'transctn')"><span aria-hidden="True"><i class="fa fa-chevron-left small"></i></span> <span class="sr-only">Previous</span></button>
+												</li>
+												<li class="page-item">
+													<button class="page-link">Page <strong class="font-weight-medium">{{pageNumberForTransaction+1}}</strong> of <strong class="font-weight-medium">{{TotalTransactionPages}}</strong></button>
+												</li>
+												<li class="page-item" *ngIf="TotalTransactionPages>pageNumberForTransaction+1">
+													<button class="page-link" title="Go to Next" (click)="onClickEvent(pageNumberForTransaction,+1,'transctn')" ><span aria-hidden="True"><i class="fa fa-chevron-right small"></i></span> <span class="sr-only">Next</span></button>
+												</li>
+											</ul>
+										</nav>
+									</div>
+									<div>
+									<!-- Pagination for jump -->
+										<nav aria-label="...">
+											<ul class="pagination">
+												<li class="page-item" >
+													<input type="number" class="form-control"  placeholder="Go to page" [(ngModel)]="txSearchPage">
+												</li>
+												<li class="page-item">
+													<button class="page-link" (click)="jumpEvent(txSearchPage,'transctn')">Search</button>
+												</li>
+												<!-- <li class="page-item" *ngIf="TotalTransactionPages>pageNumberForTransaction+1">
+													<button class="page-link" title="Go to Next" (click)="onClickEvent(pageNumberForTransaction,+1,'transctn')" ><span aria-hidden="True"><i class="fa fa-chevron-right small"></i></span> <span class="sr-only">Next</span></button>
+												</li> -->
+											</ul>
+										</nav>
+									</div>
+								</div>
+							</div>
+			
+							<ng-template #noTransactionListDiv>  
+								No Transaction List
+							</ng-template> 
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>

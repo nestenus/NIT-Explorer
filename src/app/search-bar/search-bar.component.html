@@ -1,0 +1,19 @@
+<div class="mb-4 mt-5">
+    <div class="card gradient-half-primary-body-v1 bg-primary">
+        <div class="card-body px-sm-4 pb-sm-4 ">
+            <form #frmsearch="ngForm" (ngSubmit)="onSubmit(frmsearch.value)">
+                <div class="input-group input-group-main">
+                    <input type="text" class="form-control " placeholder="Search by Address / Txn Hash / Block"
+                        name="search" autocomplete="off" ngModel>
+                    <!-- <input type="hidden" value="" id="hdnSearchText" name="hiddenSearch" ngModel> -->
+                    <div class="input-group-append">
+                        <button class="btn btn-info" type="submit">
+                            <i class="fa fa-search d-inline-block d-sm-none text-white"></i><span
+                                class="d-none d-sm-inline-block">Search</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

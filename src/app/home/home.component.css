@@ -1,0 +1,93 @@
+.maindiv {
+	min-height: -moz-available;
+	min-height: -webkit-fill-available;
+}
+
+.main-div{
+	padding-top: 100px;
+    min-height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #09203f; /* Old browsers */
+	background: -moz-linear-gradient(left,  #09203f 0%, #537895 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(left,  #09203f 0%,#537895 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right,  #09203f 0%,#537895 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#09203f', endColorstr='#537895',GradientType=1 ); /* IE6-9 */
+}
+.centerInfo{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.form-holder {
+	background: #0c1424;
+  	padding: 50px;
+  	box-shadow: 6px 6px 9px 0px rgba(0,0,0,0.6);
+}
+.info {
+	background-color: #82a508;
+	color: #fff;
+}
+.solid-gradient-btn{
+	background: #fbb01b 0%;
+	background: -moz-linear-gradient(to right, #fbb01b 0%, #ff4e50 100%);
+	background: -webkit-linear-gradient(to right, #fbb01b 0%, #ff4e50 100%);
+	background: linear-gradient(to right, #fbb01b 0%, #ff4e50 100%);
+	border: 0;
+}
+
+:host /deep/ .cdk-global-overlay-wrapper{
+    justify-content: flex-end !important;
+    align-items: flex-start !important;
+}
+:host /deep/ .mat-dialog-container{
+    background: rgba(0, 0, 0, .9);
+    color: #fff;
+}
+.navbar{
+	position: fixed;
+	z-index: 99;
+	width:100%;
+}
+.content-box{
+	min-height: 588px;
+    border: 1px solid #ccc;
+    padding-top: 12px;
+}
+.code-item {
+    padding: 6px 10px;
+}
+.code-item:hover {
+	background-color: #dedede;
+}
+.text-right-class {
+	text-align: right;
+}
+.pagination {
+	margin: 0;
+}
+.pagination-cnt {
+    padding: 10px;
+}
+@media screen and (max-width:767px){
+	/* .table-responsive h3{
+		font-size: 14px;
+	} */
+
+}
+
+@media screen and (max-width: 575px){
+	.table{
+		width:460px
+	}
+	.fixed{
+		width: 460px
+	}
+	.text-right-class {
+		text-align: left;
+	}
+	.d-flex{
+		display: block !important;
+	}
+}

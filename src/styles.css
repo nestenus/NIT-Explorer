@@ -1,0 +1,55 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import "../node_modules/font-awesome/css/font-awesome.css";
+
+.primary{
+	background: linear-gradient(to bottom, #df7b7b 0%,#f08e0a 100%);
+	/* background-color: #fbb01b; */
+	color: #FFF;
+}
+
+.navbar{
+	position: fixed;
+	z-index: 99;
+	width:100%;
+}
+.navbar-toggler-custom {
+	position: relative;
+}
+.navbar-toggler-custom .navbar-toggler-icon{
+	width: 30px;
+	height: 2px;
+	background: #fff;
+}
+
+.mat-dialog-container {
+    background: rgba(0, 0, 0, .9);
+    color: #fff;
+  }
+
+
+.navbar-toggler-custom .navbar-toggler-icon:before, .navbar-toggler-custom .navbar-toggler-icon:after{
+	content:"";
+	width: 30px;
+	height: 2px;
+	background: #fff;
+	display: block;
+	position: absolute;
+	top: 0;
+}
+.navbar-toggler-custom .navbar-toggler-icon:after{
+	top: inherit;
+	bottom: 0
+	
+}
+
+@media (min-width: 992px){
+	.navbar-expand-lg{
+		justify-content: space-between
+	}
+}
+
+.item-list:hover{
+	background: #f0f0f0;;
+}

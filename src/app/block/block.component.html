@@ -1,0 +1,155 @@
+
+<div class="container maindiv">
+	<app-search-bar></app-search-bar>
+	
+	<!-- Loading -->
+	<div class="spinDiv w-100" *ngIf="loading">
+		<div>
+			<mat-spinner class="mat-spinner-color"></mat-spinner>
+			<div class="text-white">Loading...</div>
+		</div>
+	</div>
+	
+	<!-- Loading -->
+	<div class="row" style="margin-left: 0; margin-right: 0;" *ngIf="!loading">
+
+
+		<div class="card col-md-12 mt-3">
+			<div class="d-sm-flex align-items-center mt-3 mb-3">
+				<div class="mb-2">
+					<h1 class="h4 mb-0">Block <span class="small text-secondary">&nbsp;#{{blockDetails.id}}</span><br></h1>
+				</div>
+			</div>
+
+			<div class="card-header d-flex justify-content-between align-items-center p-0">
+				<ul class="nav nav-custom nav-borderless nav_tabs1" id="nav_tabs" role="tablist">
+					<li class="nav-item"><a class="nav-link active">Overview</a></li>
+					<!-- <li id="ContentPlaceHolder1_li_disqus" class="nav-item"><a class="nav-link" href="#comments" data-toggle="tab" onclick="javascript:loaddisqus();"><span class="disqus-comment-count" data-disqus-identifier="Etherscan_BlockNo_8534300_Comments">Comments</span></a></li> -->
+				</ul>
+			</div>
+			<div class="tab-content">
+				<div class="tab-pane fade active show" id="overview" role="tabpanel" aria-labelledby="home-tab">
+					<div id="ContentPlaceHolder1_maintable" class="card-body">
+						<div class="row align-items-center mt-1">
+							<div class="col-md-3 font-weight-bold font-weight-sm-normal mb-1 mb-md-0e"><i class="fa fa-question-circle text-secondary mr-2" data-container="body" data-toggle="popover" data-placement="top" data-original-title="" title="" data-content="Also known as Block Number. The block height, which indicates the length of the blockchain, increases after the addition of the new block."></i>Block Height:</div>
+							<div class="col-md-9">
+								<div class="d-flex">
+									<span class="font-weight-sm-bold mr-2">{{blockDetails.id}}</span>
+								</div>
+							</div>
+						</div>
+						<hr class="hr-space">
+						<div class="row align-items-center">
+							<div class="col-md-3 font-weight-bold font-weight-sm-normal mb-1 mb-md-0e"><i class="fa fa-question-circle text-secondary mr-2" data-container="body" data-toggle="popover" data-placement="top" data-original-title="" title="" data-content="The date and time at which a transaction is mined."></i>Timestamp:</div>
+							<div class="col-md-9">
+								<i class="far fa-clock small mr-1"></i>{{blockDetails.timestamp*1000 | date:'MMM d, y, h:mm a'}}
+							</div>
+						</div>
+						<div id="ContentPlaceHolder1_div_tx_fieldname">
+							<hr class="hr-space mb-2">
+							<div class="row align-items-center">
+								<div class="col-md-3 font-weight-bold font-weight-sm-normal mb-1 mb-md-0e"><i class="fa fa-question-circle text-secondary mr-2" data-container="body" data-toggle="popover" data-placement="top" data-original-title="" title="" data-content="The number of transactions in the block. Internal transaction is transactions as a result of contract execution that involves Ether value."></i>Transactions:</div>
+								<div id="ContentPlaceHolder1_div_tx_fieldvalue" class="col-md-9">
+									{{blockDetails.transactions.length}} transactions
+								</div>
+							</div>
+						</div>
+						<hr class="hr-space mt-2">
+						<div class="row align-items-center">
+							<div class="col-md-3 font-weight-bold font-weight-sm-normal mb-1 mb-md-0e"><i class="fa fa-question-circle text-secondary mr-2" data-container="body" data-toggle="popover" data-placement="top" data-original-title="" title="" data-content="Miner who successfully include the block onto the blockchain."></i>Mined by:</div>
+							<div class="col-md-9">
+								{{blockDetails.miner}}
+							</div>
+						</div>
+						<hr class="hr-space">
+						<!-- <div class="row align-items-center">
+							<div class="col-md-3 font-weight-bold font-weight-sm-normal mb-1 mb-md-0e"><i class="fa fa-question-circle text-secondary mr-2" data-container="body" data-toggle="popover" data-placement="top" data-original-title="" title="" data-content="For each block, the miner is rewarded with a finite amount of Ether on top of the fees paid for all transactions in the block."></i>Block Reward:</div>
+							<div class="col-md-9">
+								{{blockDetails.}}
+							</div>
+						</div>
+						<hr class="hr-space"> -->
+						<div class="row align-items-center">
+							<div class="col-md-3 font-weight-bold font-weight-sm-normal mb-1 mb-md-0e"><i class="fa fa-question-circle text-secondary mr-2" data-container="body" data-toggle="popover" data-placement="top" data-original-title="" title="" data-content="An uncle block has a significantly lower reward than a normal block. Uncles reward is valid but rejected as it is not on the longest chain which is the working mechanism of the blockchain. Uncle block is important in Ethereum as it secures the blockchain."></i>Uncles Reward:</div>
+							<div class="col-md-9">
+								{{blockDetails.uncles.length}}
+							</div>
+						</div>
+						<hr class="hr-space">
+						<div class="row align-items-center">
+							<div class="col-md-3 font-weight-bold font-weight-sm-normal mb-1 mb-md-0e"><i class="fa fa-question-circle text-secondary mr-2" data-container="body" data-toggle="popover" data-placement="top" data-original-title="" title="" data-content="The amount of effort required to mine a new block. The difficulty algorithm may adjust according to time."></i>Difficulty:</div>
+							<div class="col-md-9">
+								{{blockDetails.difficulty}}
+							</div>
+						</div>
+						<hr class="hr-space">
+						<div class="row align-items-center">
+							<div class="col-md-3 font-weight-bold font-weight-sm-normal mb-1 mb-md-0e"><i class="fa fa-question-circle text-secondary mr-2" data-container="body" data-toggle="popover" data-placement="top" data-original-title="" title="" data-content="Total difficulty of the chain until this block."></i>Total Difficulty:</div>
+							<div class="col-md-9">
+								{{blockDetails.totalDifficulty}}
+							</div>
+						</div>
+						<hr class="hr-space">
+						<div class="row align-items-center">
+							<div class="col-md-3 font-weight-bold font-weight-sm-normal mb-1 mb-md-0e"><i class="fa fa-question-circle text-secondary mr-2" data-container="body" data-toggle="popover" data-placement="top" data-original-title="" title="" data-content="The block size is actually determined by the block's gas limit."></i>Size:</div>
+							<div class="col-md-9">
+								{{blockDetails.size}}
+							</div>
+						</div>
+						<hr class="hr-space">
+						<div class="row align-items-center">
+							<div class="col-md-3 font-weight-bold font-weight-sm-normal mb-1 mb-md-0e"><i class="fa fa-question-circle text-secondary mr-2" data-container="body" data-toggle="popover" data-placement="top" data-original-title="" title="" data-content="The total gas used in the block and its percentage of gas filled in the block."></i>Gas Used:</div>
+							<div class="col-md-9">
+								{{blockDetails.gasUsed}}
+							</div>
+						</div>
+						<hr class="hr-space">
+						<div class="row align-items-center">
+							<div class="col-md-3 font-weight-bold font-weight-sm-normal mb-1 mb-md-0e"><i class="fa fa-question-circle text-secondary mr-2" data-container="body" data-toggle="popover" data-placement="top" data-original-title="" title="" data-content="Total gas limit provided by all transactions in the block."></i>Gas Limit:</div>
+							<div class="col-md-9">
+								{{blockDetails.gasLimit}}
+							</div>
+						</div>
+						<hr class="hr-space">
+						<div class="row align-items-center">
+							<div class="col-md-3 font-weight-bold font-weight-sm-normal mb-1 mb-md-0e"><i class="fa fa-question-circle text-secondary mr-2" data-container="body" data-toggle="popover" data-placement="top" data-original-title="" title="" data-content="Any data that can be included by the miner in the block."></i>Extra Data:</div>
+							<div class="col-md-9">
+								{{blockDetails.extraData}}
+							</div>
+						</div>
+						<hr class="hr-space">
+						<div class="row align-items-center">
+							<div class="col-md-3 font-weight-bold font-weight-sm-normal mb-1 mb-md-0e"><i class="fa fa-question-circle text-secondary mr-2" data-container="body" data-toggle="popover" data-placement="top" data-original-title="" title="" data-content="Hash of the block header from the previous block."></i>Hash:</div>
+							<div class="col-md-9">
+								{{blockDetails.hash}}
+							</div>
+						</div>
+						<hr class="hr-space">
+						<div class="row align-items-center">
+							<div class="col-md-3 font-weight-bold font-weight-sm-normal mb-1 mb-md-0e"><i class="fa fa-question-circle text-secondary mr-2" data-container="body" data-toggle="popover" data-placement="top" data-original-title="" title="" data-content="The hash of the block from which this block was generated, also known as its parent block."></i>Parent Hash:</div>
+							<div class="col-md-9">
+								{{blockDetails.parentHash}}
+							</div>
+						</div>
+						<hr class="hr-space">
+						<div class="row align-items-center">
+							<div class="col-md-3 font-weight-bold font-weight-sm-normal mb-1 mb-md-0e"><i class="fa fa-question-circle text-secondary mr-2" data-container="body" data-toggle="popover" data-placement="top" data-original-title="" title="" data-content="The mechanism which Ethereum Javascript RLP encodes an empty string."></i>Sha3Uncles:</div>
+							<div class="col-md-9">
+								{{blockDetails.sha3Uncles}}
+							</div>
+						</div>
+						<hr class="hr-space">
+						<!-- <div class="row align-items-center">
+							<div class="col-md-3 font-weight-bold font-weight-sm-normal mb-1 mb-md-0e"><i class="fa fa-question-circle text-secondary mr-2" data-container="body" data-toggle="popover" data-placement="top" data-original-title="" title="" data-content="Block nonce is a value used during mining to demonstrate proof of work for a block."></i>Nonce:</div>
+							<div class="col-md-9">
+								{{blockDetails.}}
+							</div>
+						</div>
+						<hr class="hr-space"> -->
+					</div>
+				</div>
+			</div>
+		</div>
+	
+	</div>
+</div>

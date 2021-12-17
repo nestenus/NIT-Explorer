@@ -1,0 +1,13 @@
+.maindiv {
+	min-height: -moz-available;
+	min-height: -webkit-fill-available;
+}
+
+
+.actiive{
+	background-color: #dedede;
+}
+
+.txBack:hover{
+	cursor: pointer;
+}

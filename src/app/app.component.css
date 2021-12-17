@@ -1,0 +1,40 @@
+/* 
+@font-face {
+    font-family: 'Helvetica Neue LT Std';
+    src: url('../assets/fonts/HelveticaNeueLTStd-Roman.eot');
+    src: url('../assets/fonts/HelveticaNeueLTStd-Roman.eot?#iefix') format('embedded-opentype'),
+        url('../assets/fonts/HelveticaNeueLTStd-Roman.woff2') format('woff2'),
+        url('../assets/fonts/HelveticaNeueLTStd-Roman.woff') format('woff'),
+        url('../assets/fonts/HelveticaNeueLTStd-Roman.ttf') format('truetype'),
+        url('../assets/fonts/HelveticaNeueLTStd-Roman.svg#HelveticaNeueLTStd-Roman') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica Neue LT Std';
+    src: url('../assets/fonts/HelveticaNeueLTStd-Bd.eot');
+    src: url('../assets/fonts/HelveticaNeueLTStd-Bd.eot?#iefix') format('embedded-opentype'),
+        url('../assets/fonts/HelveticaNeueLTStd-Bd.woff2') format('woff2'),
+        url('../assets/fonts/HelveticaNeueLTStd-Bd.woff') format('woff'),
+        url('../assets/fonts/HelveticaNeueLTStd-Bd.ttf') format('truetype'),
+        url('../assets/fonts/HelveticaNeueLTStd-Bd.svg#HelveticaNeueLTStd-Bd') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+
+:host /deep/ body{
+	font-family: 'Helvetica Neue LT Std' !important;
+	font-weight: normal;
+}
+
+
+
+
+.rootCard{
+	background-color: #FFF;
+	font-family: 'Helvetica Neue LT Std' !important;
+}
+.headerSpace{
+	flex: 1 1 auto;
+} */

@@ -1,0 +1,163 @@
+
+<div class="container maindiv">
+	<app-search-bar></app-search-bar>
+	
+	<!-- Loading -->
+	<div class="spinDiv w-100" *ngIf="loading">
+		<div>
+			<mat-spinner class="mat-spinner-color"></mat-spinner>
+			<div class="text-white">Loading...</div>
+		</div>
+	</div>
+	
+	<!-- Loading -->
+	<div class="row" style="margin-left: 0; margin-right: 0;" *ngIf="!loading">
+		<div class="card col-md-12 mt-3" *ngIf="txDetails;">
+			<div class="d-sm-flex align-items-center mt-3 mb-3">
+				<div class="mb-2">
+					<h1 class="h4 mb-0">Transaction Details <br></h1>
+				</div>
+			</div>
+
+			<div class="card-header d-flex justify-content-between align-items-center p-0">
+				<ul class="nav nav-custom nav-borderless nav_tabs1" id="nav_tabs" role="tablist">
+					<li class="nav-item"><a class="nav-link active">Overview</a></li>
+				</ul>
+			</div>
+			<div class="tab-content">
+				<div class="tab-pane fade active show" id="overview" role="tabpanel" aria-labelledby="home-tab">
+					<div id="ContentPlaceHolder1_maintable" class="card-body">
+						<div class="row align-items-center mt-1">
+							<div class="col-md-3 font-weight-bold font-weight-sm-normal mb-1 mb-md-0e"><i class="fa fa-question-circle text-secondary mr-2" data-container="body" data-toggle="popover" data-placement="top" data-original-title="" title="" data-content="Also known as Tx Number. The tx height, which indicates the length of the txchain, increases after the addition of the new tx."></i>Transaction Hash:</div>
+							<div class="col-md-9">
+								<div class="d-flex">
+									<span class="font-weight-sm-bold mr-2" style="word-break: break-all;">{{txDetails.hash}}</span>
+								</div>
+							</div>
+						</div>
+						
+						<div id="ContentPlaceHolder1_div_tx_fieldname">
+							<hr class="hr-space mb-2">
+							<div class="row align-items-center">
+								<div class="col-md-3 font-weight-bold font-weight-sm-normal mb-1 mb-md-0e"><i class="fa fa-question-circle text-secondary mr-2" data-container="body" data-toggle="popover" data-placement="top" data-original-title="" title="" data-content="The number of transactions in the tx. Internal transaction is transactions as a result of contract execution that involves Ether value."></i>Block:</div>
+								<div id="ContentPlaceHolder1_div_tx_fieldvalue" class="col-md-9">
+									{{txDetails.blockNumber}}
+								</div>
+							</div>
+						</div>
+						<hr class="hr-space mt-2">
+						<div class="row align-items-center">
+							<div class="col-md-3 font-weight-bold font-weight-sm-normal mb-1 mb-md-0e"><i class="fa fa-question-circle text-secondary mr-2" data-container="body" data-toggle="popover" data-placement="top" data-original-title="" title="" data-content="Miner who successfully include the tx onto the txchain."></i>Timestamp:</div>
+							<div class="col-md-9">
+								{{txDetails.timestamp*1000 | date:'MMM d, y, h:mm a'}}
+							</div>
+						</div>
+						<hr class="hr-space">
+						<div class="row align-items-center">
+							<div class="col-md-3 font-weight-bold font-weight-sm-normal mb-1 mb-md-0e"><i class="fa fa-question-circle text-secondary mr-2" data-container="body" data-toggle="popover" data-placement="top" data-original-title="" title="" data-content="For each tx, the miner is rewarded with a finite amount of Ether on top of the fees paid for all transactions in the tx."></i>From:</div>
+							<div class="col-md-9">
+								{{txDetails.from}}
+							</div>
+						</div>
+						<hr class="hr-space">
+						<div class="row align-items-center">
+							<div class="col-md-3 font-weight-bold font-weight-sm-normal mb-1 mb-md-0e"><i class="fa fa-question-circle text-secondary mr-2" data-container="body" data-toggle="popover" data-placement="top" data-original-title="" title="" data-content="An uncle tx has a significantly lower reward than a normal tx. Uncles reward is valid but rejected as it is not on the longest chain which is the working mechanism of the txchain. Uncle tx is important in Ethereum as it secures the txchain."></i>To:</div>
+							<div class="col-md-9">
+								{{txDetails.to}}
+							</div>
+						</div>
+						<hr class="hr-space">
+						<div class="row align-items-center">
+							<div class="col-md-3 font-weight-bold font-weight-sm-normal mb-1 mb-md-0e"><i class="fa fa-question-circle text-secondary mr-2" data-container="body" data-toggle="popover" data-placement="top" data-original-title="" title="" data-content="The amount of effort required to mine a new tx. The difficulty algorithm may adjust according to time."></i>Value:</div>
+							<div class="col-md-9">
+								{{txDetails.value |  convertnit}} NIT
+							</div>
+						</div>
+						<hr class="hr-space">
+			
+						<div class="row align-items-center">
+							<div class="col-md-3 font-weight-bold font-weight-sm-normal mb-1 mb-md-0e"><i class="fa fa-question-circle text-secondary mr-2" data-container="body" data-toggle="popover" data-placement="top" data-original-title="" title="" data-content="The total gas used in the tx and its percentage of gas filled in the tx."></i>Gas Used by Transaction:</div>
+							<div class="col-md-9">
+								{{txDetails.gas}}
+							</div>
+						</div>
+						<hr class="hr-space">
+						<div class="row align-items-center">
+							<div class="col-md-3 font-weight-bold font-weight-sm-normal mb-1 mb-md-0e"><i class="fa fa-question-circle text-secondary mr-2" data-container="body" data-toggle="popover" data-placement="top" data-original-title="" title="" data-content="Total gas limit provided by all transactions in the tx."></i>Gas Price:</div>
+							<div class="col-md-9">
+								{{txDetails.gasPrice}}
+							</div>
+						</div>
+						<hr class="hr-space">
+						<div class="row align-items-center">
+							<div class="col-md-3 font-weight-bold font-weight-sm-normal mb-1 mb-md-0e"><i class="fa fa-question-circle text-secondary mr-2" data-container="body" data-toggle="popover" data-placement="top" data-original-title="" title="" data-content="Any data that can be included by the miner in the tx."></i>Nonce</div>
+							<div class="col-md-9">
+								{{txDetails.nonce}}
+							</div>
+						</div>
+						<hr class="hr-space">
+						<div class="row align-items-center">
+							<div class="col-md-3 font-weight-bold font-weight-sm-normal mb-1 mb-md-0e"><i class="fa fa-question-circle text-secondary mr-2" data-container="body" data-toggle="popover" data-placement="top" data-original-title="" title="" data-content="Hash of the tx header from the previous tx."></i>Input Data:</div>
+							<div class="col-md-9">
+								{{txDetails.input}}
+							</div>
+						</div>
+						<hr class="hr-space">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="card col-md-12 mt-3" *ngIf="txDetails; else noDetails">
+			<div class="card-header d-flex justify-content-between align-items-center p-0">
+				<ul class="nav nav-custom nav-borderless nav_tabs1" id="nav_tabs" role="tablist">
+					<li id="ContentPlaceHolder1_li_transactions" class="nav-item" title="Transactions"><a class="nav-link active" data-title="Primary Transactions" data-toggle="tab" onclick="javascript:updatehash('');">Child Transactions</a></li>
+				</ul>
+			</div>
+			<div class="card-body">
+				<div class="tab-content">
+					<div class="tab-pane fade show active" id="transactions" role="tabpanel" aria-labelledby="transactions-tab">
+						<div class="table-responsive mb-2 mb-md-0" *ngIf="txDetails.childTxs.length > 0; else noChildTxDiv">
+							<table class="table table-striped table-bordered">
+								<thead>
+									<tr>
+										<th>
+											From
+										</th>
+										<th>
+											To
+										</th>
+										<th>
+											Value
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr *ngFor="let childTxn of txDetails.childTxs">
+										<td>{{childTxn.from}}</td>
+										<td>{{childTxn.to}}</td>
+										<td>{{this.helper.web3.utils.hexToNumberString(childTxn.value) | convertnit}}</td>
+									</tr>
+								</tbody>
+							</table>									
+						</div>
+
+						<ng-template #noChildTxDiv>  
+							<div class="col-md-12 text-center">
+								No Child Tx Found!
+							</div>
+						</ng-template>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+
+		<ng-template #noDetails>  
+			<div class="col-md-12 pt-5 text-center">
+				No Details Found!
+			</div>
+		</ng-template>
+	</div>
+</div>
